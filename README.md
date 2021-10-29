@@ -1,0 +1,1 @@
+run `npm run dev` to build components.js and open index.html in your browser

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>WebComponent based components</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="components.js" async></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>Badges</h1>
+        <div> This is a <svelte-badge type="danger" caption="Badge"></svelte-badge>
+        </div>
+
+        <h1 class="mt-5">Buttons</h1>
+        <svelte-button>Simple svelte-button</svelte-button>
+        <hr />
+        <svelte-button style="cta" additionalClasses="text-uppercase">CTA svelte-button with uppercase</svelte-button>
+        <hr />
+        <svelte-button data-foo="bar" aria-live="polite">svelte-button with additional attributes</svelte-button>
+        <hr />
+        <svelte-button type="button" name="action" value="delete">svelte-button with name and value</svelte-button>
+
+        <h1 class="mt-5">Cards</h1>
+        <svelte-card headingLevel="2" heading={<Fragment><span lang="de">Großartige</span> Card</Fragment>} footer={<Fragment>This is the footer!</Fragment>} > Welcome to the
+            <strong>best card</strong>
+        </svelte-card>
+        <hr />
+        <svelte-card headingLevel="2" heading="Another svelte-card with a Link as Header" href="#foo"> Content baby! </svelte-card>
+
+        <h1 class="mt-5">List</h1>
+        <svelte-list items='{"Type": "Car" , "Color": "<span lang=\"de\">Etwas</span> text"}'></svelte-list>
+        
+        <h1 class="mt-5">MagicHeaders</h1>
+        <MagicHeaders.Section>
+            <article>
+                <header>
+                    <MagicHeaders.Heading>Some h1</MagicHeaders.Heading>
+                    <p class="tagline"> Content </p>
+                </header>
+                <MagicHeaders.Section>
+                    <section>
+                        <MagicHeaders.Heading>Some h2</MagicHeaders.Heading>
+                    </section>
+                    <p>Some more content</p>
+                    <MagicHeaders.Section>
+                        <div class="foo bar">
+                            <MagicHeaders.Heading>Some h3</MagicHeaders.Heading>
+                        </div>
+                        <p>Some more content</p>
+                    </MagicHeaders.Section>
+                </MagicHeaders.Section>
+                <MagicHeaders.Section>
+                    <section>
+                        <MagicHeaders.Heading>Again some h2</MagicHeaders.Heading>
+                    </section>
+                    <p>Some more content</p>
+                </MagicHeaders.Section>
+            </article>
+        </MagicHeaders.Section>
+
+        <h1 class="mt-5">Form Group</h1>
+        <FieldGroup.Simple type="email" id="my-email" label="eMail" name="users_email" value="BOOM" error="'BOOM' is not a valid eMail addreess" />
+        <FieldGroup.Model type="email" field="email" object={{ email: 'BOOM' }} errors={{ email: 'invalid' }} I18n={(field, {context})=> ({ 'email': 'E-Mail' }[field])}
+            ErrorI18n={(field, error, {context}) => ({ 'email': {'invalid': 'Ungültige E-Mail Adresse'}, }[field][error])} />
+    </div>
+</body>
+
+</html>
